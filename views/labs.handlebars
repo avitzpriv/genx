@@ -1,0 +1,20 @@
+<section id="labs" class="container">
+    <h1>All Labs</h1>
+
+    {{#each labs}}
+      <div class="lab">
+      <h3>{{title}}</h3>
+      <p>{{description}}</p>
+      <ul>
+        <li>Name: {{lab_name}}</li>
+        <li>Address: {{lab_address}}</li>
+      </ul>
+      <div class="tech">
+        <small>User: <span>{{lab_user_name}}</span></small>
+      </div>
+    </div>
+    {{else}}
+      <p>No labs available</p>
+    {{/each}}
+    
+  </section>
