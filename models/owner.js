@@ -19,7 +19,17 @@ class Owner {
     }
 
     getByLabId(labId) {
-        return this.db.getOwnerDetailsModel().findAll({where: {user_id : userId}});
+        return this.db.getOwnerDetailsModel().findAll({
+            include: [{
+                model: this.db.getLab2OwnersModel(),
+                where: {lab_Id:labId}
+            }]});
+        // Project.findAll({
+        //     include: [{
+        //         model: Task,
+        //         where: { state: Sequelize.col('project.state') }
+        //     }]
+        // })
     }
 }
 

@@ -19,7 +19,7 @@ class Lab {
         return this.db.getLabsModel().findAll({where: {lab_id : labId}});
     }
 
-    getAll(labId) {
+    getAll() {
         return this.db.getLabsModel().findAll();
     }
 

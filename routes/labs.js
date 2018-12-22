@@ -2,19 +2,37 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 const Lab = require('../models/labs');
+const Owners = require('../models/owner');
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 
 // Get labs list
-router.get('/', (req, res) => {
+router.get('/:id?', (req, res) => {
     var labs = new Lab();
-    labs.getAll()
-    .then((labs) => {
-        console.log("LABS ARE:"+labs);
-        res.render('labs', {labs});
-    })
-    .catch(err => console.log(err));
+    if (req.params.id) {
+        labs.getById(req.params.id)
+            .then((lab) => {
+                //                res.render('lab', { lab });
+                console.log("here we are")
+                owners = new Owners();
+                owners.getByLabId(lab[0].lab_id)
+                    .then((ownersList) => {
+                        console.log('list ::: ' + JSON.stringify(ownersList));
+                        res.send('OK');
+                    })
+                    .catch(err => console.log(err));
+            })
+            .catch(err => console.log(err));
+    } else {
+        labs.getAll()
+            .then((labs) => {
+                console.log("LABS ARE:" + labs);
+                res.render('labs', { labs });
+            })
+            .catch(err => console.log(err));
+    }
 });
+
 // Display add gig form
 // router.get('/add', (req, res) => res.render('add'));
 

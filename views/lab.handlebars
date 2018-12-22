@@ -1,0 +1,13 @@
+<section id="labs" class="container">
+
+  {{#each lab}}
+  <h1>{{lab_name}}</h1>
+
+  <div class="lab">
+    <h2>Address: {{lab_address}}</h2>
+    <h3>User:{{lab_user_name}}, {{lab_user_email}}</h3>
+    <h4><a href='/labs/{{lab_id}}/owners/'>Owners</a></h4>
+  </div>
+  {{/each}}
+
+</section>

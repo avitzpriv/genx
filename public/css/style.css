@@ -137,7 +137,7 @@ header.inner {
 
 .login-form {
   display: flex;
-  width: 600px;
+  /*width: 600px;*/
   box-shadow: var(--box-shadow);
 }
 

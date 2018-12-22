@@ -21,7 +21,7 @@ class genDB {
             port: settings.dbConfig.port,
         
             // disable logging; default: console.log
-            logging: false,
+            logging: true,
         
             // Specify options, which are used when sequelize.define is called.
             // The following example:
@@ -118,6 +118,9 @@ class genDB {
             owner_id  : {type:Sequelize.INTEGER},
             fastq_url : {type:Sequelize.STRING, validate:{isUrl:true}}
         })
+
+        this.owner_details.belongsToMany(this.labs, { through: this.lab2owners })
+        this.labs.belongsToMany(this.owner_details, { through: this.lab2owners })
 
         return this.connection.sync();
     }
